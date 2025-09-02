@@ -1,0 +1,150 @@
+body {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.container{
+  flex: 1;
+}
+.navbar {
+  height: 5rem;
+  background-color: white;
+}
+.fa-compass {
+  color: #fe424d;
+  font-size: 2rem;
+}
+.nav-link {
+  color: #222222 !important;
+}
+.f-info-links a {
+  text-decoration: none;
+  color: #222222;
+}
+.f-info-links a:hover {
+  text-decoration: underline;
+  color: #222222;
+}
+.f-info-links,
+.f-info-socials,
+.f-info-brands {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.f-info-socials i {
+  font-size: 1.2rem;
+  margin-right: 1rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.f-info-socials i:hover {
+  color: #fe424d;
+  transform: scale(1.2);
+}
+.f-info {
+  text-align: center;
+  height: 8rem;
+  background-color: #ebebeb;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: space-evenly;
+}
+.card {
+  border: none !important;
+  margin-bottom: 2rem;
+}
+.card-img-top {
+  border-radius: 1rem !important;
+  width: 100%;
+  object-fit: cover !important;
+}
+.card-body {
+  padding: 0 !important;
+}
+
+.card-text p {
+  font-weight: 400;
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
+.listing-link {
+  text-decoration: none !important;
+  color: inherit !important;
+  display: block; /* keeps the whole card clickable */
+}
+
+
+
+.card {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-img-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; /* make sure overlay covers the image */
+  background: rgba(255,255,255,0); /* transparent default */
+  transition: background 0.3s ease;
+  pointer-events: none; /* doesn’t block clicks */
+}
+
+.card:hover .card-img-overlay {
+  background: rgba(255,255,255,0.2); /* white tint on hover */
+}
+.add-btn {
+  background-color: #fe424d !important;
+  border: none !important;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.add-btn:hover {
+  background-color: #ff5b65 !important; /* lighter shade */
+  transform: scale(1.02); /* slight zoom */
+}
+
+.show-img{
+  height: 30vh;
+}
+
+.btns{
+  display: flex;
+}
+.show-card{
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.listing-card {
+  transition: all 0.2s ease-in-out;
+}
+
+.listing-card:hover {
+  transform: scale(1.025);
+}
+
+.delete-btn {
+  background-color: #dc3545 !important;
+  border: none !important;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.delete-btn:hover {
+  background-color: #c82333 !important;
+  transform: scale(1.02);
+}
+
+.f-info-socials .fa-facebook-f:hover {
+  color: #1877F2;
+}
+
+.f-info-socials .fa-linkedin-in:hover {
+  color: #0A66C2;
+}
