@@ -1,5 +1,5 @@
 const express = require("express");
-const { listingSchema } = require("./Schema.js");
+const { listingSchema } = require("./schema.js");
 const app = express();
 const mongoose = require("mongoose");
 const path = require("path");
