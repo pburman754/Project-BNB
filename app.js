@@ -62,6 +62,20 @@ const validateListing = (req, res, next) => {
 };
 
 
+
+const validateReview = (req, res, next) => {
+  const { error } = reviewSchema.validate(req.body);
+  if (error) {
+    const msg = error.details.map(el => el.message).join(",");
+    throw new ExpressError(400, msg);
+  } else {
+    next();
+  }
+};
+
+//Index Route
+
+
 app.get("/listings", async (req, res) => {
   const allListings = await Listing.find({});
   res.render("listings/index", { allListings });
@@ -132,8 +146,8 @@ app.post("/listings/:id/reviews", async (req, res) => {
   listing.reviews.push(newreview);
   await newreview.save();
   await listing.save();
-  // res.redirect(`/listings/${listing._id}`);
-  res.send("success");
+  res.redirect(`/listings/${listing._id}`);
+ 
 });
 
 app.all("*", (req, res, next) => {
