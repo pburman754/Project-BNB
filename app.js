@@ -44,6 +44,14 @@ const sessionConfig = {
     secure: false,
   },
 };
+
+
+app.get("/", (req, res) => {
+  res.send("hi i am root");
+});
+
+
+
 app.use(session(sessionConfig));
 app.use(flash());
  
@@ -53,8 +61,10 @@ app.use((req, res, next) => {
   next();
 }); 
 
-app.get("/", (req, res) => {
-  res.send("hi i am root");
+
+app.use((req, res, next) => {
+  if (!req.session.user) return next();
+  next(new ExpressError("You must be logged in to access this page!", 401));
 });
 
 app.use("/listings", listingRouter);
