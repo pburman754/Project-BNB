@@ -4,7 +4,7 @@ const wrapAsync = require("../utils/wrapAsync.js");
 const ExpressError = require("../utils/ExpressError.js");
 const Listing = require("../models/listing.js");
 const { listingSchema } = require("../schema.js");
-const { isLoggedIn, isOwner,validateListing } = require("../middleware.js");
+const { isLoggedIn, isOwner,validateListing, isReviewAuthor } = require("../middleware.js");
 
 //Index Route
 
@@ -22,7 +22,11 @@ router.get("/new", isLoggedIn, (req, res) => {
 router.get("/:id", async (req, res) => {
   let { id } = req.params;
   const listing = await Listing.findById(id)
-    .populate("reviews")
+    .populate({
+      path:"reviews",
+      populate: {
+        path:"author",},
+      })
     .populate("owner");
 
   if (!listing) {
@@ -81,7 +85,8 @@ router.put(
 //Delete Route
 router.delete(
   "/:id",
-  isLoggedIn,isOwner,
+  isLoggedIn,
+  isOwner,
   wrapAsync(async (req, res) => {
     let { id } = req.params;
     let deleteListing = await Listing.findByIdAndDelete(id);
