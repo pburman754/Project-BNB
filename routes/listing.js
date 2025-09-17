@@ -12,16 +12,19 @@ const {
   isReviewAuthor,  // Middleware to check if user authored the review
 } = require("../middleware.js");
 const ListingController = require("../controllers/listing.js"); // Controller for listing routes
+const multer=require("multer");
+const upload=multer({dest:"uploads/"});
+
 
 // Route for listing all listings and creating a new listing
 router
   .route("/")
   .get(wrapAsync(ListingController.index)) // Get all listings
-  // .post(
-  //   isLoggedIn,                // Ensure user is logged in
-  //   validateListing,           // Validate listing data
-  //   wrapAsync(ListingController.createListing) // Create new listing
-  // );
+  .post(
+    isLoggedIn,                // Ensure user is logged in
+    validateListing,           // Validate listing data
+    wrapAsync(ListingController.createListing) // Create new listing
+  );
 
 // Route to render form for creating a new listing
 router.get("/new", isLoggedIn, ListingController.renderNewForm);
