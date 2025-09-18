@@ -46,6 +46,10 @@ app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));
 
 const secret = process.env.SECRET;
+if (!secret) {
+  console.error("Error: SECRET is not defined in the environment variables.");
+  process.exit(1); // Exit the process with an error code
+}
 
 const store = MongoStore.create({
   mongoUrl: dburl,
@@ -105,6 +109,7 @@ app.use((err, req, res, next) => {
   res.status(statusCode).render("error", { err });
 });
 
-app.listen(8080, () => {
-  console.log("Server is running on port 8080");
+const port = process.env.PORT || 8080;
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
