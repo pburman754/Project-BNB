@@ -3,7 +3,13 @@
   <div class="row mb-3 mt-3">
     <div class="col-8 offset-2">
       <h3 class="text-center">Edit your Listing</h3>
-      <form method="POST" action="/listings/<%= listing._id%>?_method=PUT" class="needs-validation mt-4" novalidate >
+      <form
+        method="POST"
+        action="/listings/<%= listing._id%>?_method=PUT"
+        class="needs-validation mt-4"
+        novalidate
+        enctype="multipart/form-data"
+      >
         <div class="mb-3">
           <label for="title" class="form-label">Title:</label>
           <input
@@ -13,7 +19,7 @@
             class="form-control"
             required
           />
-           <div class="invalid-feedback">Please enter a valid title.</div>
+          <div class="invalid-feedback">Please enter a valid title.</div>
         </div>
 
         <div class="mb-3">
@@ -23,18 +29,26 @@
             rows="4"
             class="form-control"
             required
-          ><%= listing.description%></textarea>
+          >
+<%= listing.description%></textarea
+          >
           <div class="invalid-feedback">Please enter a valid description.</div>
         </div>
 
+
         <div class="mb-3">
-          <label for="image" class="form-label">Image:</label>
+          Original Image: <br />
+          <% if (originalImageUrl) { %>
+          <img src="<%= originalImageUrl %> height="200" width="200" />
+          <% } %>
+        </div>
+
+        <div class="mb-3">
+          <label for="image" class="form-label">Upload new image:</label>
           <input
-            name="listing[image][url]"
-            value="<%= listing.image && listing.image.url ? listing.image.url : ''%>"
-            type="text"
+            name="listing[image]"
+            type="file"
             class="form-control"
-            required
           />
           <div class="invalid-feedback">Please enter a valid image url.</div>
         </div>

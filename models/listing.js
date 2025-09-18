@@ -9,15 +9,10 @@ const listingSchema=new Schema({
     },
     description:String,
     image: {
-    filename: {
-      type: String,
-      default: "listingimage"
-    },
-    url: {
-      type: String,
-      default: "https://via.placeholder.com/800x600?text=Image+Unavailable",
-      set: (v) => (v === "" ? "https://via.placeholder.com/800x600?text=Image+Unavailable" : v)
-    }
+        type: {
+            url: String,
+            filename: String
+        }
   },
 
     price:Number,
