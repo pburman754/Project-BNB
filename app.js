@@ -19,11 +19,10 @@ const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 
-// const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
 const dburl = process.env.ATLASDB_URL;
 
 if (!dburl) {
-  console.error("Error: ATLASDB_URL is not defined in your .env file.");
+  console.error("Error: ATLASDB_URL is not defined in the environment variables.");
   process.exit(1); // Exit the process with an error code
 }
 
@@ -46,7 +45,7 @@ app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));
 
-const secret = process.env.SECRET || "thisshouldbeabettersecret!";
+const secret = process.env.SECRET;
 
 const store = MongoStore.create({
   mongoUrl: dburl,
